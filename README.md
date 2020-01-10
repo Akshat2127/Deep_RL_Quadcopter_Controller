@@ -21,8 +21,11 @@ In this project, you will design an agent that can fly a quadcopter, and then tr
  ### Agent Design
  for this project we will use Deep Deterministic Policy Gradients or DDPG algorithm to work with continuous state and action spaces. It is actually an actor-critic method, but the key idea is that the underlying policy function used is deterministic in nature, with some noise added in externally to produce the desired stochasticity in actions taken.
  The two main components of the algorithm, the actor and critic networks can be implemented using most modern deep learning libraries, such as Keras or TensorFlow.
+ 
 Note that we will need two copies of each model(actor and critic) - one local and one target. This is an extension of the "Fixed Q Targets" technique from Deep Q-Learning, and is used to decouple the parameters being updated from the ones that are producing target values
+
 Note2 - After training over a batch of experiences, we could just copy our newly learned weights (from the local model) to the target model. However, individual batches can introduce a lot of variance into the process, so it's better to perform a soft update, controlled by the parameter tau
+
 Finally we need for all this to work properly is an appropriate noise model explained below.
  
 ### Ornstein–Uhlenbeck Noise
@@ -43,6 +46,7 @@ cd Deep_RL_Quadcopter_Controller
 2. Make sure to provide requirements.txt(depending on the enviornment you're working in like mac, linux or windows or Aws EC2, and whether using GPU or not) file to include a complete list of pip packages needed to run your project.
 
 3. Take a look at the files in the directory to better understand the structure of the project.
+
    task.py: Task (environment) that defines the goal and provides feedback to the agent.
 
     agents/: Folder containing reinforcement learning agents.
